@@ -1,4 +1,4 @@
-# Installing Python Locally
+# Installing Python Locally - m1 Mac Version
 
 ## 1. Required Installations
 
@@ -9,7 +9,7 @@
        - On MacOS, the shell is called Terminal and can be found in `Applications>Utilities` in Finder
        - OR you can use spotlight search and search for "Terminal".
    
-   
+<!--    
    - [ ] **Windows users should install GitBash, instead of using the windows command prompt**
        - Otherwise, all of the commands for working with your terminal will not match the curriculum and other cloud-based platforms (like Amazon Web Services)
       - Download  the Git for Windows Installer: [Git for Windows download](https://gitforwindows.org/)
@@ -17,7 +17,7 @@
     - Use the default options, EXCEPT when you see the "Advanced Installation Options" window, check BOTH options, like in the screenshot below:
     
 <img src="images/anaconda_check_path.png" width=400px>
-       
+        -->
        
 
         
@@ -34,15 +34,45 @@
 
 
 
-3. **Anaconda - individual edition.** [Link](https://www.anaconda.com/products/individual)
+<!-- 3. **Anaconda - individual edition.** [Link](https://www.anaconda.com/products/individual)
     - Anaconda is a data-science-focused python distributable that comes with a convenient GUI program for working with our python environments.
     - Download and run the installer from the link above.
     - Use the default options
-    
+     -->
+
+### M1-Mac Miniforge Instructions
+- This approach uses miniforge instead of Anaconda.
+> Warning! You cannot install miniforge if you already have Anaconda installed. First, compeletly uninstall anaconda using the anaconda-clean package by following the instructions here:  https://docs.anaconda.com/anaconda/install/uninstall/
+
+- It installs the versions of tensorflow and other packages described in the following blog post:
+    - Blog Post with Starting Instructions: https://caffeinedev.medium.com/how-to-install-tensorflow-on-m1-mac-8e9b91d93706:
+- The main differences between this and non-m1 environment:
+    - Python 3.8 instead of 3.7
+    - Matploltib (any version) vs Matplotlib 3.2.2 (currently 3.5)
+
+#### Installing Miniforge
+1. Install XCode: `xcode-select --install`
+2. Install Homebrew (if not already installed):
+    - Follow the instructions from: https://docs.brew.sh/Installation
+- In brief, install homebrew: 
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+- After installing homebrew, you will see a message that says run these two commands to add homebrew to your terminal. Copy and paste those exact commands into your terminal and hit enter.
+
+![png](images/homebrew_shell_commands.png)
+
+3. Install miniforge: 
+```bash
+brew install miniforge
+```
+
+4. Install pkg-config (for matplotlib) 
+```brew install pkg-config```
+
 
     
-    
-    
+<!--     
     
 4. [Windows Users Only] **Ensuring GitBash Can Find Anaconda.**
     - Windows users may need to take an additional step to get anaconda and gitbash working together.
@@ -69,11 +99,11 @@
                 - `echo ". '${PWD}'/conda.sh" >> ~/.bashrc`
             
         4. Open a new GitBash window and enter `conda` again. You should no longer get the "bash: conda: command not found" error message! 
-            -   You are all set to move on to "Setting Up Your `dojo-env` Environment"!
+            -   You are all set to move on to "Setting Up Your `dojo-env` Environment"! -->
 
 ## 2. Setting Up Your `dojo-env` Environment
 
-**We have prepared a special file for you called `environment.yml` which has a collection of all the essential packages we will need**
+**We have prepared a special file for you called `environment_m1.yml` which has a collection of all the essential packages we will need**
 
 
 In order to use this file, you will first need to clone this repository to your computer. 
@@ -88,6 +118,9 @@ In order to use this file, you will first need to clone this repository to your 
     - Note: GitHub Desktop will create a NEW folder INSIDE of the folder you select. 
         - It will be named the same as the repository name.
         
+>- In GitHub desktop, switch to the "m1-mac" branch of the repository before running the next step
+![png](images/switch_branch.png)        
+
         
 4. **Once have the repository cloned, you will need to open a terminal window in the same directory as this repository.**
     - There are 2 ways to do this. 
@@ -98,9 +131,9 @@ In order to use this file, you will first need to clone this repository to your 
         - You should see a file called `environment.yml`. 
         - If you do not see the folder, check if you see a `dojo-env-setup` folder instead. 
             - If so, type `cd dojo-env-setup` to navigate into the repo.
-            - Type `ls` again and confirm you see `environment.yml`.
+            - Type `ls` again and confirm you see `environment_m1.yml`.
     - **Once you've confirmed you are in the same folder as the `environment.yml` file, type the following command into your terminal.**
-        - `conda env create -f environment.yml`
+        - `conda env create -f environment_m1.yml`
         - press `enter`
     - The installation process will take several minuts. 
     - You may be asked a Y/N question at some point.
